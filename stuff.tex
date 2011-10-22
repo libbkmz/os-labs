@@ -2,13 +2,13 @@
 
 % Оформляем заголовок лабы
 \newcommand{\labtitle}[2]{
-  \title{\Large{#1} \\ \large{\textbf{#2}}}
-  \author{} \date{} 
-  \maketitle
+  \begin{center}
+    \Large{#1} \\[0.5em] 
+    \large{\textbf{#2}}
+  \end{center}
 }
 
-% Делаем текст жирным
-%\newcommand{\b}[1]{\textbf{#1}}
-
-% Оборачиваем в нумерованный список
-\newcommand{\enum}[1]{\begin{enumerate}#1\end{enumerate}}
+% Оформляем комманды и ключи жирным моноширинным шрифтом
+\newcommand{\cmd}[1]{
+  \texttt{\textbf{#1}}
+}
