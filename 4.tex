@@ -97,7 +97,9 @@
       #define NO_SUCH_ADDRESS -1
       #define IO_ERROR -2
 
-      int get_value (FILE* file, size_t K, size_t N, int_t address, int_t* value) {
+      int get_value 
+      (FILE* file, size_t K, size_t N, int_t address, int_t* value) 
+      {
 
         if (address.x < 0 || address.x > K)
           return NO_SUCH_ADDRESS;
