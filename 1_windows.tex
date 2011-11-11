@@ -1,0 +1,92 @@
+% Компилировать xelatex'ом!
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, enumerate, multicol, listings}
+\usepackage{xunicode, xltxtra, xecyr}
+\setmainfont{Droid Serif}
+\setmonofont{Droid Sans Mono}
+
+% Поля
+\usepackage{geometry}
+\geometry{left=2cm}
+\geometry{right=1.5cm}
+\geometry{top=1cm}
+\geometry{bottom=2cm}
+
+% Полезности
+\input{stuff}
+
+
+\begin{document}
+
+  % Заголовок
+  \labtitle{Лабораторная работа №1}{Изучение работы команд Linux для работы с файлами}
+  
+  % Описание
+  \begin{flushleft}
+    Комманды Linux для работы с файлами:
+    \begin{itemize}
+      \item \cmd{cd} - переход в заданную или в домашнюю папку
+      \item \cmd{pwd} - вывод имени текущего каталога
+      \item \cmd{cp} - копирование одного или нескольких файлов и каталогов
+      \item \cmd{rm} - удаление файлов и каталогов
+      \item \cmd{ls} - вывод списка файлов и подкаталогов каталога
+      \item \cmd{cat} - вывод содержимого заданного файла на экран
+      \item \cmd{diff}, \cmd{colordiff} - сравнение двух файлов и вывод различий между ними
+      \item \cmd{grep} - поиск заданной строки текста в файле или нескольких файлах, в том числе и с использованием регулярных выражений
+      \item \cmd{mkdir} - создание папки
+      \item \cmd{touch} - создание файла
+      \item \cmd{mv} - перемещение или переименование файлов и каталогов
+    \end{itemize}
+  \end{flushleft}
+  
+  \begin{flushleft}
+    Для выполнения лабораторной работы необходимо запустить командную строку. Сделать это можно двумя способами:
+    \begin{enumerate}
+      \item В главном меню в подменю \cmd{Стандартные} выбрать \cmd{Эмулятор терминала}
+      \item В контекстном меню рабочего стола выбрать \cmd{Открыть терминал}
+    \end{enumerate}
+  \end{flushleft}
+  
+  \begin{flushleft}
+    Для получения более подробной информации по командам можно использовать команду \cmd{man} или запускать выбранную команду с ключом \cmd{-h}, например \cmd{cp -h}
+  \end{flushleft}
+  
+  \begin{flushleft}
+    Для работы с группой файлов в командной строке можно использовать маску фильтр. Символ \texttt{"?"} в имени файла означает, что в этом месте может быть любой символ, например \texttt{"lab?.cpp"} соответствует \texttt{"lab1.cpp"} и \texttt{"lab2.cpp"}, но уже не соответствует \texttt{"lab12.cpp"}. Символ \texttt{"*"} заменяет любое количество символов, например маске \texttt{"lab*.cpp"} соответствуют все вышеназванные примеры.
+  \end{flushleft}
+
+  \newpage
+
+  \begin{flushleft}
+    \center{\Large{Практические задания}} \\[0.5em]
+    \begin{enumerate}
+      \item Запустите Linux
+      \item Составьте справочник для вышеприведенных команд (на русском языке), расписав какие параметры для чего нужны
+      \item Поработайте с этими командами
+      \item Что нужно уметь:
+      \begin{itemize}
+        \item Запустить командную строку
+        \item Вывести имя текущего каталога
+        \item Перейти в домашнюю папку
+        \item Вывести список файлов и папок домашней директории
+        \item Создать папку \texttt{test} в домашней папке
+        \item Перейти в папку \texttt{test}
+        \item Скопировать все файлы из \texttt{/usr/share/common-licenses} в \texttt{test}
+        \item Отобразить скопированные файлы с информацией о размере и правах доступа
+        \item Переименовать файл \texttt{BSD} в \texttt{TEST}
+        \item Удалить файл \texttt{TEST}
+        \item Найти номера строк в файле \texttt{GPL-1} содержащие текст \texttt{"the"}
+        \item Скопировать файлы с расширением \texttt{txt} в папку \texttt{test} из \texttt{/usr/share/vim/vim73/doc} с добавлением новых файлов
+        \item Сравнить файл \texttt{GPL-1} и \texttt{GPL-2}
+        \item Создать каталог \texttt{proba} в папке \texttt{test}
+        \item Переместить файлы из папки \texttt{test} в \texttt{test/proba}
+        \item Удалить файлы из \texttt{test/proba}
+        \item Удалить каталог \texttt{proba}
+        \item Скопировать все файлы и папки из \texttt{/usr/share/vim/vim73} в \texttt{test}
+        \item Удалить папку \texttt{test} включая все ее файлы и подкаталоги
+      \end{itemize}
+    \end{enumerate}
+  \end{flushleft}
+
+\end{document}

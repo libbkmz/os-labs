@@ -1,0 +1,78 @@
+% Компилировать xelatex'ом!
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, enumerate, multicol, listings}
+\usepackage{xunicode, xltxtra, xecyr}
+\setmainfont{Droid Serif}
+\setmonofont{Droid Sans Mono}
+
+% Поля
+\usepackage{geometry}
+\geometry{left=2cm}
+\geometry{right=1.5cm}
+\geometry{top=1cm}
+\geometry{bottom=2cm}
+
+% Полезности
+\input{stuff}
+
+
+\begin{document}
+
+  % Заголовок
+  \labtitle{Лабораторная работа №3}{Изучение методов управления памятью в оерационных системах}
+  
+  % Описание
+  \begin{flushleft}
+    Разработать приложение, реализующее следующие функции:
+    \begin{itemize}
+      \item Выделяет всю память системы
+      \item Освобождает всю выделенную память
+      \item Определяет количество выделенной памяти
+      \item Определяет время выделения памяти системы
+      \item Определяет время освобождения памяти
+    \end{itemize}
+  \end{flushleft}
+  
+  Память необходимо выделять функциями \cmd{malloc} или \cmd{calloc} блоками по N килобайт, где N - номер студента в журнале. \\
+
+  Образец работы программы:
+  \begin{flushleft}
+    \begin{lstlisting}[language=c, 
+                      breaklines=true, 
+                      showtabs=false, 
+                      showspaces=false, 
+                      showstringspaces=false,
+                      basicstyle=\ttfamily \footnotesize]
+         Method: Calloc 
+         Allocation time: 25 sec 
+         Size: 2132848640 bytes 
+         Release time: 98 sec
+
+         Method: Malloc 
+         Allocation time: 29 sec 
+         Size: 2127646720 bytes 
+         Release time: 122 sec
+    \end{lstlisting}
+  \end{flushleft}
+
+  Для защиты лабораторной работы необходимо предоставить отчет состоящий из следующих обязательных частей:
+  \begin{itemize}
+    \item Титульный лист
+    \item Задание
+    \item Листинг программы
+    \item Результаты работы программы по заданному образцу + скриншот, на котором видно выделение всей памяти системы
+    \item Вывод по проделанной работе
+  \end{itemize}
+  
+  Также необходимо изучить следующий теоретический материал:
+  \begin{itemize}
+    \item Типы адресов
+    \item Классификация методов управления памятью
+    \item Методы распределения памяти без использования дискового пространства
+    \item Методы распределения памяти с использованием дискового пространства
+    \item Своппинг
+    \item Принципы кэширования данных
+  \end{itemize}
+
+\end{document}

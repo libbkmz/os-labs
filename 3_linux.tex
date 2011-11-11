@@ -35,13 +35,33 @@
   \end{flushleft}
   
   Память необходимо выделять функциями \cmd{malloc} или \cmd{calloc} блоками по N килобайт, где N - номер студента в журнале. \\
-  
+
+  Образец работы программы:
+  \begin{flushleft}
+    \begin{lstlisting}[language=c, 
+                      breaklines=true, 
+                      showtabs=false, 
+                      showspaces=false, 
+                      showstringspaces=false,
+                      basicstyle=\ttfamily \footnotesize]
+         Method: Calloc 
+         Allocation time: 25 sec 
+         Size: 2132848640 bytes 
+         Release time: 98 sec
+
+         Method: Malloc 
+         Allocation time: 29 sec 
+         Size: 2127646720 bytes 
+         Release time: 122 sec
+    \end{lstlisting}
+  \end{flushleft}
+
   Для защиты лабораторной работы необходимо предоставить отчет состоящий из следующих обязательных частей:
   \begin{itemize}
     \item Титульный лист
     \item Задание
     \item Листинг программы
-    \item Результаты работы программы + скриншот, на котором видно выделение всей памяти системы
+    \item Результаты работы программы по заданному образцу + скриншот, на котором видно выделение всей памяти системы
     \item Вывод по проделанной работе
   \end{itemize}
   
