@@ -19,98 +19,97 @@
 
 \begin{document}
 
-  % Заголовок
-  \labtitle{Лабораторная работа №4}{Изучение способов организации файловых систем}
+    % Заголовок
+    \labtitle{Лабораторная работа №4}{Изучение способов организации файловых систем}
+
+    % Описание
+    \begin{flushleft}
+        Разработать приложение, моделирующее работу перемещающего загрузчика. Программа считывает двоичный файл следующей структуры:
+
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+                \hline
+                N & A$_{1}$ & ... & A$_{N}$ & D$_{0}$ & D$_{1}$ & ... & D$_{K-1}$ & D$_{K}$ \\
+                \hline
+            \end{tabular}
+        \end{center}
+    
+        где:
+        \begin{itemize}
+            \item N - количество ячеек с адресам данных
+            \item K - количество ячеек с данными
+            \item A$_{1}$..A$_{N}$ - ячейки с адресами данных
+            \item D$_{0}$..D$_{K}$ - ячейки с данными
+        \end{itemize}
+    
+        Необходимо изменить значение в области данных по заданным адресам на некоторую величину, вводимую с клавиатуры. В программе предусмотреть обработку ошибок. \linebreak
+    
+        Предусмотрено четыре варианта лабораторной работы где все ячейки:
+        \begin{enumerate}
+            \item восьмиразрядные
+            \item шестнадцатиразрядные
+            \item двадцатичетырехразрядные
+            \item тридцатидвухразрядные
+        \end{enumerate}
+    
+        Для получения своего варианта необходимо взять свой номер в списке журнала, прибавить к нему последнюю цифру номера группы, взять остаток от деления этого числа на 4 и прибавить 1. \linebreak
+    
+        Для защиты лабораторной работы необходимо предоставить отчет состоящий из следующих обязательных частей:
+        \begin{itemize}
+            \item Титульный лист
+            \item Задание
+            \item Листинг программы
+            \item Результаты работы программы + скриншот
+            \item Вывод по проделанной работе
+        \end{itemize}
+    
+        Также необходимо изучить следующий теоретический материал:
+        \begin{itemize}
+            \item Способы организации и хранения информации на внешних устройствах
+            \item Понятия файловой системы, файла, каталога и т.д.
+            \item Способы организации файловой системы для FAT, FAT32 и NTFS
+        \end{itemize}
+    
+    \end{flushleft}
   
-  % Описание
-  \begin{flushleft}
-    Разработать приложение, моделирующее работу перемещающего загрузчика. Программа считывает двоичный файл следующей структуры:
-    
-    \begin{center}
-      \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-        \hline
-        N & A$_{1}$ & ... & A$_{N}$ & D$_{0}$ & D$_{1}$ & ... & D$_{K-1}$ & D$_{K}$ \\
-        \hline
-      \end{tabular}
-    \end{center}
-    
-    где:
-    \begin{itemize}
-      \item N - количество ячеек с адресам данных
-      \item K - количество ячеек с данными
-      \item A$_{1}$..A$_{N}$ - ячейки с адресами данных
-      \item D$_{0}$..D$_{K}$ - ячейки с данными
-    \end{itemize}
-    
-    Необходимо изменить значение в области данных по заданным адресам на некоторую величину, вводимую с клавиатуры. В программе предусмотреть обработку ошибок. \linebreak
-    
-    Предусмотрено четыре варианта лабораторной работы где все ячейки:
-    \begin{enumerate}
-      \item восьмиразрядные
-      \item шестнадцатиразрядные
-      \item двадцатичетырехразрядные
-      \item тридцатидвухразрядные
-    \end{enumerate}
-    
-    Для получения своего варианта необходимо взять свой номер в списке журнала, прибавить к нему последнюю цифру номера группы, взять остаток от деления этого числа на 4 и прибавить 1. \linebreak
-    
-    Для защиты лабораторной работы необходимо предоставить отчет состоящий из следующих обязательных частей:
-    \begin{itemize}
-      \item Титульный лист
-      \item Задание
-      \item Листинг программы
-      \item Результаты работы программы + скриншот
-      \item Вывод по проделанной работе
-    \end{itemize}
-    
-    Также необходимо изучить следующий теоретический материал:
-    \begin{itemize}
-      \item Способы организации и хранения информации на внешних устройствах
-      \item Понятия файловой системы, файла, каталога и т.д.
-      \item Способы организации файловой системы для FAT, FAT32 и NTFS
-    \end{itemize}
-    
-  \end{flushleft}
-  
-\newpage
+    \newpage
 
-  \begin{flushleft}
-    \center{\Large{Пример считывания значения двадцатичетырехразрядной ячейки из файла}} \\[0.5em]
-    \begin{lstlisting}[language=c, 
-                      breaklines=true, 
-                      showtabs=false, 
-                      showspaces=false, 
-                      showstringspaces=false,
-                      basicstyle=\ttfamily \footnotesize]
+    \begin{flushleft}
+        \center{\Large{Пример считывания значения двадцатичетырехразрядной ячейки из файла}} \\[0.5em]
+        \begin{lstlisting}[language=c, 
+                           breaklines=true, 
+                           showtabs=false, 
+                           showspaces=false, 
+                           showstringspaces=false,
+                           basicstyle=\ttfamily \footnotesize]
     
-      #include <stdlib.h>
-      #include <stdio.h>
+            #include <stdlib.h>
+            #include <stdio.h>
 
-      #pragma pack(push)
-      #pragma pack(1)
-      #define INT_MAX 0xFFFFFF
-      struct int24_s { int32_t x : 24; };
-      typedef struct int24_s int_t;
-      #pragma pack(pop)
+            #pragma pack(push)
+            #pragma pack(1)
+            #define INT_MAX 0xFFFFFF
+            struct int24_s { int32_t x : 24; };
+            typedef struct int24_s int_t;
+            #pragma pack(pop)
 
-      #define SUCCESS 0
-      #define NO_SUCH_ADDRESS -1
-      #define IO_ERROR -2
+            #define SUCCESS 0
+            #define NO_SUCH_ADDRESS -1
+            #define IO_ERROR -2
 
-      int get_value 
-      (FILE* file, size_t K, size_t N, int_t address, int_t* value) 
-      {
+            int get_value 
+            (FILE* file, size_t K, size_t N, int_t address, int_t* value) 
+            {
 
-        if (address.x < 0 || address.x > K)
-          return NO_SUCH_ADDRESS;
+                if (address.x < 0 || address.x > K)
+                    return NO_SUCH_ADDRESS;
 
-        long int pos = ftell(file);
-        fseek(file, ((N + address.x + 1) * sizeof(int_t)), SEEK_SET);
-        return (fread(value, sizeof(int_t), 1, file) == 1 && fseek(file, pos, SEEK_SET) == 0) ? SUCCESS : IO_ERROR;
-      }
+                long int pos = ftell(file);
+                fseek(file, ((N + address.x + 1) * sizeof(int_t)), SEEK_SET);
+                return (fread(value, sizeof(int_t), 1, file) == 1 && fseek(file, pos, SEEK_SET) == 0) ? SUCCESS : IO_ERROR;
+            }
       
-    \end{lstlisting}
-  \end{flushleft}
-
+        \end{lstlisting}
+    \end{flushleft}
 
 \end{document}
