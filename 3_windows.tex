@@ -34,7 +34,7 @@
         \end{itemize}
     \end{flushleft}
   
-    Память необходимо выделять функциями \cmd{malloc} или \cmd{calloc} блоками по N килобайт, где N - номер студента в журнале. \\
+    Память необходимо выделять функциями \cmd{HeapAlloc} или \cmd{malloc} блоками по N килобайт, где N - номер студента в журнале. \\
 
     Образец работы программы:
     \begin{flushleft}
@@ -44,7 +44,7 @@
                            showspaces=false, 
                            showstringspaces=false,
                            basicstyle=\ttfamily \footnotesize]
-             Method: Calloc 
+             Method: HeapAlloc
              Allocation time: 25 sec 
              Size: 2132848640 bytes 
              Release time: 98 sec
@@ -61,7 +61,7 @@
         \item Титульный лист
         \item Задание
         \item Листинг программы
-        \item Результаты работы программы по заданному образцу + скриншот, на котором видно выделение всей памяти системы
+        \item Результаты работы программы \textbf{по заданному образцу} + скриншот, на котором видно выделение всей памяти системы
         \item Вывод по проделанной работе
     \end{itemize}
   
