@@ -1,0 +1,66 @@
+% Компилировать xelatex'ом!
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, enumerate, multicol, listings}
+\usepackage{xunicode, xltxtra, xecyr}
+\setmainfont{Droid Serif}
+\setmonofont{Droid Sans Mono}
+
+% Поля
+\usepackage{geometry}
+\geometry{left=2cm}
+\geometry{right=1.5cm}
+\geometry{top=1cm}
+\geometry{bottom=2cm}
+
+% Полезности
+\input{stuff}
+
+
+\begin{document}
+
+  % Заголовок
+  \labtitle{Лабораторная работа №5}{Взаимодействие процессов}
+  
+  % Описание
+  \begin{flushleft}
+    Разработать приложение, которое может выполнять доступ к некоторому файлу в следующих режимах:
+    
+   \begin{enumerate}
+     \item По чтению
+     \item По записи
+     \item Блокировать доступ к файлу по чтению
+     \item Блокировать доступ к файлу по записи
+   \end{enumerate}
+
+  Блокировку файла необходимо реализовать используюя системные блокирующие переменные семафоры.
+  \\
+  Одновременно запускаются несколько экземпляров разработанного приложения, и определяются возмодности доступа к файлу. Найти и обосновать верную комбинацию доступа к данным файла.
+
+  
+  Для защиты лабораторной работы необходимо предоставить отчет, состоящий из следущих обязательных частей:
+  \begin{itemize}
+   \item Титульный лист
+   \item Задание
+   \item Листинг программы
+   \item Результат работы проргаммы + скриншот программы
+   \item Вывод по проделанной работе
+  \end{itemize}
+
+
+
+  А также изучить следущий теоретический материал:
+  \begin{itemize}
+   \item Мультипрограммирование
+   \item Планирование процессов и потоков
+   \item Синхронизация процессов и потоков
+  \end{itemize}
+
+
+
+
+
+
+\end{flushleft}
+
+\end{document}

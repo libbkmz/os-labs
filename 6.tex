@@ -1,0 +1,48 @@
+% Компилировать xelatex'ом!
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, enumerate, multicol, listings}
+\usepackage{xunicode, xltxtra, xecyr}
+\setmainfont{Droid Serif}
+\setmonofont{Droid Sans Mono}
+
+% Поля
+\usepackage{geometry}
+\geometry{left=2cm}
+\geometry{right=1.5cm}
+\geometry{top=1cm}
+\geometry{bottom=2cm}
+
+% Полезности
+\input{stuff}
+
+
+\begin{document}
+
+  % Заголовок
+  \labtitle{Лабораторная работа №6}{Изучение работы команд Windows для работы с сетевым окружением}
+  
+  % Описание
+  \begin{flushleft}
+    Изучить базовые команды для работы с сетевым окружением.
+    Список команд с их описанием:
+    \begin{itemize}
+     \item {\bf ping} - проверяет соединение на уровне протокола. ICMP.
+     \item {\bf route} - обработка таблиц сетевых маршрутов.
+     \item {\bf tracert} - определяет путь до точки назначения с помощью посылки в точку назначения эхо сообщения.
+     \item {\bf net time} - установка, просмотр текущего времени по серверу времени.
+     \item {\bf net use} - просмотр, изменение сетевых подключений.
+     \item {\bf net view} - просмотр списка общих папок и принтеров компьютера, работающего под управлением Windows XP.
+     \item {\bf ipconfig} - настройка стека протокола TCP/IP.
+     \item {\bf hostname} - определение имени текущего компьютера.
+     \item {\bf arp} - служит для вывода и изменения записей кэша протокола ARP.
+    \end{itemize}
+  \end{flushleft}
+  
+
+  % Вводная
+  \begin{flushleft}
+    12234325343
+  \end{flushleft}
+
+\end{document}
