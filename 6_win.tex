@@ -1,0 +1,155 @@
+% Компилировать xelatex'ом!
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath, enumerate, multicol, listings}
+\usepackage{xunicode, xltxtra, xecyr}
+\setmainfont{Droid Serif}
+\setmonofont{Droid Sans Mono}
+
+% Поля
+\usepackage{geometry}
+\geometry{left=2cm}
+\geometry{right=1.5cm}
+\geometry{top=1cm}
+\geometry{bottom=2cm}
+
+% Полезности
+\input{stuff}
+
+
+\begin{document}
+
+  % Заголовок
+  \labtitle{Лабораторная работа №6}{Изучение работы команд Windows для работы с сетевым окружением}
+  
+  % Описание
+  \begin{flushleft}
+    Изучить базовые команды для работы с сетевым окружением.
+    Список команд с их описанием:
+    \begin{itemize}
+     \item {\bf ping} - проверяет соединение на уровне протокола ICMP.
+     \item {\bf route} - обработка таблиц сетевых маршрутов.
+     \item {\bf tracert} - определяет путь до точки назначения с помощью посылки в точку назначения эхо сообщения.
+     \item {\bf net time} - установка, просмотр текущего времени по серверу времени.
+     \item {\bf net use} - просмотр, изменение сетевых подключений.
+     \item {\bf net view} - просмотр списка общих папок и принтеров компьютера, работающего под управлением Windows XP.
+     \item {\bf ipconfig} - настройка стека протокола TCP/IP.
+     \item {\bf hostname} - определение имени текущего компьютера.
+     \item {\bf arp} - служит для вывода и изменения записей кэша протокола ARP.
+    \end{itemize}
+  \end{flushleft}
+  
+
+  % Вводная
+  \begin{flushleft}
+    Данная лабораторная работа выполняется из командной строки. Для ее запуска необходимо выполнить следущее:
+    \begin{flushleft}
+      Пуск -> Выполнить -> cmd \\[0.4cm]
+    \end{flushleft}
+  \end{flushleft}
+
+  \begin{flushleft}
+   Для получения более подробной информации, можно использовать центр справки и поддержки Windows или консольную справку по команде с помощью ключа {\bf /?} . Например для просмотра справки по команде {\bf PING} необходимо выполнить следующую команду {\bf PING /?}. Для просмотра справки по командам {\bf NET} необходимо набрать следующую команду {\bf NET HELP 'ИМЯ КОМАНДЫ'}, например {\bf NET HELP TIME} – просмотр справки по команде {\bf NET TIME} \\[0.2cm]
+  \end{flushleft}
+
+  \begin{flushleft}
+   Для авторизации на сервере 10.3.3.222 использовать логин 1 и пароль 1. Данная работа выполняется без использования виртуальной машины!
+  \end{flushleft}
+
+
+  \newpage
+
+  \begin{center}
+    {\bf Практические задания}
+  \end{center}
+
+  \begin{flushleft}
+    \begin{enumerate} [1. ]
+     \item Запустите Windows
+     \item Составьте справочник для выше приведенных команд(на русском языке), расписав какие параметры для чего нужны.
+     \item Поработайте с этими командами
+     \item Что нужно уметь:
+      \begin{enumerate} [\bf a. ]
+        \item Запустить командную строку
+        \item Определить наличие в сети компьютера с именем \cmd {www.sfu-kras.ru}
+        \begin{flushleft}
+          \cmd {ping -n 1 www.sfu-kras.ru}
+        \end{flushleft}
+        \item Определить наличие в сети компьютера с именем \cmd {www.sfu-kras.ru} с временем жизни пакета (TTL) 1-10
+        \begin{flushleft}
+          \cmd {ping -n 1 -i 6 www.sfu-kras.ru}
+        \end{flushleft}
+        \item Подключится к заданному серверу \cmd {10.3.3.222}
+        \item Определить имя компьютера, если его адрес \cmd {10.3.3.222}
+        \begin{flushleft}
+         \cmd {ping -a -n 1 10.3.3.222}\\
+         \cmd {nslookup 10.3.3.222}
+        \end{flushleft}
+        \item Отобразить список подключенных сетевых дисков
+        \begin{flushleft}
+         \cmd {net use}
+        \end{flushleft}
+        \item Подключить сетевую папку из списка доступных сервера 10.3.3.222 на свободную метку тома.
+        \begin{flushleft}
+         \cmd {net use L:  \textbackslash\textbackslash 10.3.3.222\textbackslash RANDOM}
+        \end{flushleft}
+        \item Отключить сетевой диск подключенный в предыдущем задании
+        \begin{flushleft}
+         \cmd {net use L: /delete}
+        \end{flushleft}
+        \item Отобразить текущее время на сервере 10.3.3.222
+        \begin{flushleft}
+         \cmd {net time \textbackslash\textbackslash 10.3.3.222}
+        \end{flushleft}
+        \item Установить время на текущем компьютере по серверу 10.3.3.222
+        \begin{flushleft}
+         \cmd {net time \textbackslash\textbackslash 10.3.3.222 /SET } \\
+         Однако, при выполнении в компьютерных классах это задание может не сработать изза отсутсвия необходимых прав, в следствии чего возникнет системная ошибка
+        \end{flushleft}
+        \item Определить путь прохождения пакета до компьютера \cmd {www.sfu-kras.ru}
+        \begin{flushleft}
+         \cmd{tracert www.sfu-kras.ru}
+        \end{flushleft}
+        \item Отобразить таблицу маршрутизации
+        \begin{flushleft}
+         \cmd {route PRINT}
+        \end{flushleft}
+        \item Отобразить полную информацию о состоянии стека IP
+        \begin{flushleft}
+         \cmd {ipconfig /all}
+        \end{flushleft}
+        \item Обновить состояние стека IP, переполучить IP адрес от DHCP сервера
+        \begin{flushleft}
+         \cmd {ipconfig /renew} \\
+         На выполнение этой команды, в компьютерных классах, также не хватает прав
+        \end{flushleft}
+        \item Отобразить список компьютеров в текущей рабочей группе
+        \begin{flushleft}
+         \cmd {net view}
+        \end{flushleft}
+        \item Отобразить список общих папок компьютера 10.3.3.222
+        \begin{flushleft}
+         \cmd {net view \textbackslash\textbackslash 10.3.3.222} \\[1.5cm]
+        \end{flushleft}
+
+        \end{enumerate}
+    \end{enumerate}
+
+  \end{flushleft}
+
+  \begin{center}
+   {\bf Контрольные вопросы}
+  \end{center}
+  \begin{flushleft}
+    \begin{enumerate}
+     \item Подключить сетевой диск, и назвать его вашим именем.
+     \item Получить все IP адреса, которые принадлежат домену \cmd {ya.ru}
+     \item Вывести список сетевых рабочих групп
+     % net view /DOMAIN
+     \item Подключить сетевой диск, который сохраняется после перезагрузки
+      
+    \end{enumerate}
+
+  \end{flushleft}
+
+\end{document}
