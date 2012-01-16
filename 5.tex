@@ -6,6 +6,8 @@
 \setmainfont{Droid Serif}
 \setmonofont{Droid Sans Mono}
 
+\lstset{extendedchars=true}
+
 % Поля
 \usepackage{geometry}
 \geometry{left=2cm}
@@ -24,7 +26,7 @@
   
   % Описание
   \begin{flushleft}
-    Разработать приложение, которое может выполнять доступ к некоторому файлу в следующих режимах:
+    Разработать приложение ''Текстовый редактор'' с использованием режимов доступа к файлу:
     
    \begin{enumerate}
      \item По чтению
@@ -35,7 +37,7 @@
 
   Блокировку файла необходимо реализовать используюя системные блокирующие переменные семафоры.
   \\
-  Одновременно запускаются несколько экземпляров разработанного приложения, и определяются возмодности доступа к файлу. Найти и обосновать верную комбинацию доступа к данным файла.
+  Одновременно запускаются несколько экземпляров разработанного приложения, и определяются возможности доступа к файлу. Найти и обосновать верную комбинацию доступа к данным файла.
 
   
   Для защиты лабораторной работы необходимо предоставить отчет, состоящий из следущих обязательных частей:
@@ -43,7 +45,7 @@
    \item Титульный лист
    \item Задание
    \item Листинг программы
-   \item Результат работы проргаммы + скриншот программы
+   \item Результат работы программы + скриншот программы
    \item Вывод по проделанной работе
   \end{itemize}
 
@@ -55,11 +57,105 @@
    \item Планирование процессов и потоков
    \item Синхронизация процессов и потоков
   \end{itemize}
+\end{flushleft}
+
+  \newpage
+  \begin{center}
+    \Large{Примеры исходного кода} \\[0.5em]
+  \end{center}
+
+  \begin{center}
+    Unix
+  \end{center}
+        \begin{lstlisting}[language=c,
+                           breaklines=true,
+                           showtabs=false,
+                           showspaces=false,
+                           showstringspaces=false,
+                           numbers=left,
+                           extendedchars=true,
+                           numberstyle=\footnotesize,
+                           stepnumber=1,
+                           basicstyle=\ttfamily \footnotesize]
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <fcntl.h>           /* For O_* constants */
+#include <sys/stat.h>        /* For mode constants */
+#include <semaphore.h>
+
+#include <unistd.h>          /* For sleep */
+
+static int value;
+sem_t sem;
+
+int main()
+{
+    // 
+    sem_t *semaphor = sem_open( "/sem" , (O_CREAT),  (S_IRWXU), 1 );
+
+    sem_getvalue(semaphor, &value);
+
+    sem_wait(semaphor);
+
+    sem_trywait(semaphor);
+
+    return 0;
+}
+        \end{lstlisting}
 
 
 
+\begin{flushleft}
+  \begin{itemize}
+   \item В строке №14 мы создаем именованный семафор или получает сущесвующий семафор.
+   \item Функция \cmd{sem\_getvalue} записывает значение семафора в переменную \cmd{value}
+   \item Функция \cmd{sem\_wait} уменьшает(блокирует) переданный ей семафор. Если значение семафора больше 0, то функция возвращает управление немелдленно. Если семафор имеет нулевое значение, выплонение кода блокируется пока он станет больше 0.
+   \item Функция \cmd{sem\_trywait} аналогична функции \cmd{sem\_wait} за исключением того, что если семафор имеет нулевое значение, выполнение кода не блокируется, а ошибка записывается в переменную errno.
+   \item Функция \cmd{sem\_post} увеличивает(разблокирует) семафор.
+  \end{itemize}
+    
+\end{flushleft}
 
 
+
+  \begin{center}
+    Windows
+  \end{center}
+
+        \begin{lstlisting}[language=c,
+                           breaklines=true,
+                           showtabs=false,
+                           showspaces=false,
+                           showstringspaces=false,
+                           numbers=left,
+                           extendedchars=true,
+                           numberstyle=\footnotesize,
+                           stepnumber=1,
+                           basicstyle=\ttfamily \footnotesize]
+#include <stdio.h>
+#include <Windows.h>
+#include <fcntl.h>
+
+
+int main()
+{
+    HANDLE sem = CreateSemaphore(NULL, 1, 1, (LPCWSTR)"locker");
+
+    WaitForSingleObject(sem, INFINITE);
+
+    ReleaseSemaphore(sem, 1, NULL);
+    return 0;
+}
+
+\end{lstlisting}
+
+\begin{flushleft}
+  \begin{itemize}
+   \item В строке №8 создаем именованный семафор с начальным и максимальным значением 1.
+   \item В строке №10 Мы уменьшаем значение семафора на единицу, а если его текущее значение ноль, то мы будем ожидать бесконечное(INFINITY) время, по истечении которого прекратится ожидание, либо когда какойто другой процесс увеличит семафор.
+   \item Функция \cmd{ReleaseSemaphore} увеличивает значение семафора на единицу. 
+  \end{itemize}
 
 \end{flushleft}
 
